@@ -1,3 +1,10 @@
+#############################################
+#
+# pythonとnodeのオフィシャルイメージを基に、自分用に書き換え
+# https://hub.docker.com/r/kaznishi/python-node/
+#
+#############################################
+
 FROM alpine:3.6
 
 ARG DGID=1000
@@ -175,9 +182,9 @@ RUN apk add --no-cache --virtual .build-deps-yarn curl gnupg tar \
     && for key in \
         6A010C5166006599AA17F08146C2130DFD2497F5 \
     ; do \
-      gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys "$key" || \
-      gpg --keyserver hkp://ipv4.pool.sks-keyservers.net --recv-keys "$key" || \
-      gpg --keyserver hkp://pgp.mit.edu:80 --recv-keys "$key" ; \
+        gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys "$key" || \
+        gpg --keyserver hkp://ipv4.pool.sks-keyservers.net --recv-keys "$key" || \
+        gpg --keyserver hkp://pgp.mit.edu:80 --recv-keys "$key" ; \
     done \
     && curl -fSLO --compressed "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz" \
     && curl -fSLO --compressed "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz.asc" \
